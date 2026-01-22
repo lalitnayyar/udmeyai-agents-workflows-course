@@ -23,7 +23,7 @@ def get_website_html(url: str) -> str:
 def extract_core_website_content(html: str) -> str:
     response = client.responses.create(
         # using gpt-4o-mini because it's great for summarization & extraction tasks (and cheap!)
-        model="gpt-4o-mini",
+        model="gpt-4o",
         input=f"""
             You are an expert web content extractor. Your task is to extract the core content from a given HTML page.
             The core content should be the main text, excluding navigation, footers, and other non-essential elements like scripts etc.
@@ -42,7 +42,7 @@ def extract_core_website_content(html: str) -> str:
 
 def summarize_content(content: str) -> str:
     response = client.responses.create(
-        model="gpt-4o-mini",
+        model="gpt-4o",
         input=f"""
             You are an expert summarizer. Your task is to summarize the provided content into a concise and clear summary.
 
@@ -107,7 +107,7 @@ def generate_x_post(summary: str) -> str:
 
 
 def main():
-    website_url = input("Website URL: ")
+    website_url = input("Website URL: https://maximilian-schwarzmueller.com/articles/gemma-3n-may-be-amazing/ ")
     print("Fetching website HTML...")
     try:
         html_content = get_website_html(website_url)
